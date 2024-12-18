@@ -1,0 +1,25 @@
+{% extends 'home.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% block content %}
+<body>
+  <h1>{{ post.title }}</h1>
+  <p>{{ post.description }}</p>
+  {% if post.image %}
+    <img src="{{ post.image.url }}" alt="Post Image" width="150px">
+  {% endif %}
+  <form method="post" action="{% url 'vote_post' post.id %}">
+    {% csrf_token %}
+    {% for option in answer_options %}
+      <p>Кол-во голосов: {{option.votes}}</p>
+      <input type="radio" name="answer_option" value="{{option.id}}">{{ option.text }}
+    {% endfor %}
+    <button type="submit">Проголосовать</button>
+  </form>
+</body>
+{% endblock %}
+</html>

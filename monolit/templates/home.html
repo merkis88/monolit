@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Title</title>
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'home' %}">MySite</a></h1>
+        <div class="profile">
+            {% if user.username %}
+            <a href="{% url 'profile' %}" style="display: flex; align-items: center;">{{user.username}}{% if profile.avatar %}<img src="{{profile.avatar.url}}" alt="" style="width: 50px;">{% endif %}</a>
+            {% else %}
+            <a href="{% url 'login' %}">Войти</a>
+            <a href="{% url 'register' %}">Зарегистрироваться</a>
+            {% endif %}
+        </div>
+    </header>
+    <main>
+        <a href="{% url 'post_list' %}" class="a-button">Список постов</a>
+        {% block content %}
+        {% endblock %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    </main>
+</body>
+</html>

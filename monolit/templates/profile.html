@@ -1,0 +1,52 @@
+{% extends 'home.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% block content %}
+<body>
+    <div class="profile-container">
+        <div class="profile-info">
+            <h1>Профиль: {{profile.user.username}}</h1>
+            <h2>Имя:
+                {% if profile.user.first_name %}
+                    {{profile.user.first_name}}
+                {% else %}
+                    Не указано
+                {% endif %}
+            </h2>
+            <h2>Фамилия:
+                {% if profile.user.last_name %}
+                    {{profile.user.last_name}}
+                {% else %}
+                    Не указано
+                {% endif %}
+            </h2>
+            <h2>Почта: {{profile.user.email}}</h2>
+            <h2>Текущая фотография пользователя:
+            {% if profile.avatar %}
+                <img src="{{profile.avatar.url}}" alt="" style="width: 250px;">
+            {% else %}
+                Фотография отсутствует
+            {% endif %}
+            </h2>
+            <a href="{% url 'logout' %}" class="a-button">Выйти из аккаунта</a>
+        </div>
+
+        <div class="profile-update">
+            <h1>Отредактировать профиль</h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{userform.as_p}}
+                {{profileform.as_p}}
+
+                <button type="submit" class="a-button">Сохранить изменения</button>
+            </form>
+            <a href="{% url 'delete_account' %}" class="a-button">Удалить аккаунт</a>
+        </div>
+    </div>
+</body>
+{% endblock %}
+</html>

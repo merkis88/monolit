@@ -1,0 +1,18 @@
+{% extends 'home.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% block content %}
+<body>
+  <h1>Список постов</h1>
+  <a href="{% url 'create_post' %}" class="a-button">Создать свой пост</a>
+  {% for post in posts %}
+    <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
+    <p>{{ post.description }}</p>
+  {% endfor %}
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,23 @@
+{% extends 'home.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+{% block content %}
+<body>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ post_form.as_p }}
+
+    <h3>Варианты ответов:</h3>
+    {{answer_formset.management_form}}
+    {% for form in answer_formset.forms %}
+    <div>{{form.as_p}}</div>
+    {% endfor %}
+    <button type="submit" class="a-button">Создать пост</button>
+  </form>
+</body>
+{% endblock %}
+</html>

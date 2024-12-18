@@ -1,0 +1,20 @@
+{% extends 'home.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% block content %}
+<body>
+<div class="delete-account-container">
+  <form method="post">
+    {% csrf_token %}
+    <p>Вы уверены что хотите удалить аккаунт?</p>
+    <button type="submit" class="a-button">Удалить аккаунт</button>
+    <a href="{% url 'profile' %}" class="a-button">Отмена</a>
+  </form>
+</div>
+</body>
+{% endblock %}
+</html>

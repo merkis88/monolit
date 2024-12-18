@@ -1,0 +1,22 @@
+{% extends 'home.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% block content %}
+<body>
+  <div class="form-container">
+    <h2>Авторизация</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="username">Логин пользователя <input type="text" name="username" placeholder="Логин" required></label>
+      <label for="password">Пароль <input type="password" name="password" required></label>
+
+      <button type="submit">Авторизироваться</button>
+    </form>
+  </div>
+</body>
+{% endblock %}
+</html>
