@@ -27,6 +27,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
 class AnswerOption(models.Model):
     post = models.ForeignKey(Post, related_name='answer_options', on_delete=models.CASCADE)
     text = models.CharField(max_length=255)
